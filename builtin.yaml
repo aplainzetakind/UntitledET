@@ -1,0 +1,330 @@
+1:
+    direction: True
+    name: Major 1 and 5
+    desc: Following a major I-IV-V7-I cadence, to tell the tonic and the dominant apart.
+    modes: [0]
+    tonic: C
+    degrees: [0,7]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+2:
+    direction: True
+    name: Minor 1 and 5
+    desc: Following a minor I-IV-V7-I cadence, to tell the tonic and the dominant apart.
+    modes: [1]
+    tonic: C
+    degrees: [0,7]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+3:
+    direction: True
+    name: Major 1, 3 and 5
+    desc: Following a major I-IV-V7-I cadence, to tell the tonic, the third and the dominant apart.
+    modes: [0]
+    tonic: C
+    degrees: [0,4,7]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+4:
+    direction: True
+    name: Minor 1, b3 and 5
+    desc: Following a minor I-IV-V7-I cadence, to tell the tonic, the third and the dominant apart.
+    modes: [1]
+    tonic: C
+    degrees: [0,3,7]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+5:
+    direction: True
+    name: Major 1, 3, 5 and 7
+    desc: Major I-IV-V7-I. Same as the previous exercises with the 7th added.
+    modes: [0]
+    tonic: C
+    degrees: [0,4,7,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+6:
+    direction: True
+    name: Minor 1, b3, 5 and 7
+    desc: Minor I-IV-V7-I. Same as the previous exercises with the 7th added.
+    modes: [1]
+    tonic: C
+    degrees: [0,3,7,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+7:
+    direction: True
+    name: Major 1, 3, 4, 5, and 7
+    desc: Major I-IV-V7-I. Same as the previous exercises with the 4th added. 
+    modes: [0]
+    tonic: C
+    degrees: [0,4,5,7,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+8:
+    direction: True
+    name: Minor 1, b3, 4, 5, and 7
+    desc: Minor I-IV-V7-I. Same as the previous exercises with the 4th added. 
+    modes: [1]
+    tonic: C
+    degrees: [0,3,5,7,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+9:
+    direction: True
+    name: Major 1, 3, 4, 5, 6 and 7
+    desc: Major I-IV-V7-I. Same as the previous exercises with the 6th added.
+    modes: [0]
+    tonic: C
+    degrees: [0,4,5,7,9,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+    
+10:
+    direction: True
+    name: Minor 1, b3, 4, 5, 6 and 7
+    desc: Minor I-IV-V7-I. Same as the previous exercises with the 6th added.
+    modes: [1]
+    tonic: C
+    degrees: [0,3,5,7,9,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+    
+11:
+    direction: True
+    name: All diatonic tones in the major mode.
+    desc: Major I-IV-V7-I. Same as the previous exercises with the 2nd added.
+    modes: [0]
+    tonic: C
+    degrees: [0,2,4,5,7,9,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+12:
+    direction: True
+    name: All diatonic tones in the minor mode.
+    desc: Minor I-IV-V7-I. Same as the previous exercises with the 2nd added.
+    modes: [1]
+    tonic: C
+    degrees: [0,2,3,5,7,9,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+13:
+    direction: True
+    name: Major mode. 1,2,b3,3,4,5,6,7.
+    desc: Major I-IV-V7-I. Same as the previous exercises with the minor 3rd added.
+    modes: [0]
+    tonic: C
+    degrees: [0,2,3,4,5,7,9,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+14:
+    direction: True
+    name: Minor mode. 1,2,b3,3,4,5,6,7.
+    desc: Minor I-IV-V7-I. Same as the previous exercises with the major third added.
+    modes: [1]
+    tonic: C
+    degrees: [0,2,3,4,5,7,9,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+15:
+    direction: True
+    name: Major mode. 1,b2,2,b3,3,4,5,6,7.
+    desc: Major I-IV-V7-I. Same as the previous exercises with the diminished 2nd added.
+    modes: [0]
+    tonic: C
+    degrees: [0,1,2,3,4,5,7,9,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+16:
+    direction: True
+    name: Minor mode. 1,b2,2,b3,3,4,5,6,7.
+    desc: Minor I-IV-V7-I. Same as the previous exercises with the diminished 2nd added.
+    modes: [1]
+    tonic: C
+    degrees: [0,1,2,3,4,5,7,9,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+17:
+    direction: True
+    name: Major mode. 1,b2,2,b3,3,4,b5,5,6,7.
+    desc: Major I-IV-V7-I. Same as the previous exercises with the diminished 5th added.
+    modes: [0]
+    tonic: C
+    degrees: [0,1,2,3,4,5,6,7,9,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+18:
+    direction: True
+    name: Minor mode. 1,b2,2,b3,3,4,b5,5,6,7.
+    desc: Minor I-IV-V7-I. Same as the previous exercises with the diminished 5th added.
+    modes: [1]
+    tonic: C
+    degrees: [0,1,2,3,4,5,6,7,9,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+19:
+    direction: True
+    name: Major mode. 1,b2,2,b3,3,4,b5,5,b6,6,7.
+    desc: Major I-IV-V7-I. Same as the previous exercises with the minor 6th added.
+    modes: [0]
+    tonic: C
+    degrees: [0,1,2,3,4,5,6,7,8,9,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+20:
+    direction: True
+    name: Minor mode. 1,b2,2,b3,3,4,b5,5,b6,6,7.
+    desc: Minor I-IV-V7-I. Same as the previous exercises with the minor 6th added.
+    modes: [1]
+    tonic: C
+    degrees: [0,1,2,3,4,5,6,7,8,9,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+21:
+    direction: True
+    name: Major mode. All tones.
+    desc: Major I-IV-V7-I. Same as the previous exercises with the minor 7th added.
+    modes: [0]
+    tonic: C
+    degrees: [0,1,2,3,4,5,6,7,8,9,10,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
+22:
+    direction: True
+    name: Minor mode. All tones.
+    desc: Minor I-IV-V7-I. Same as the previous exercises with the minor 7th added.
+    modes: [1]
+    tonic: C
+    degrees: [0,1,2,3,4,5,6,7,8,9,10,11]
+    range: ['C-3', 'C-5']
+    context: [1]
+    harmony: 1
+    length: 1
+    bpm: 40
+    duration: 2
+    sound: [1]
+
