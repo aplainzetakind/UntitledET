@@ -11,6 +11,8 @@ SF2 = 'sf/piano.sf2'
 class drilloptions:
     '''Holds all the drill options read from the yaml file.'''
     def __init__(self, drills=None):
+        self.nam = drills['name']
+        self.des = drills['desc']
         self.dir = drills['direction']
         self.mod = drills['modes']
         self.ton = drills['tonic']
@@ -37,7 +39,7 @@ class drill:
             print("Could not initiate Fluidsynth. Aborting.")
             sys.exit(1)
 
-    def run(self):
+    def run(self,*args):
         '''Starts the drill loop to produce Exercise() instances.'''
         self.halt = False
         #These instructions shouldn't be in every drill by default. Perhaps add

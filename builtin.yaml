@@ -328,3 +328,17 @@
     duration: 2
     sound: [1]
 
+23:
+    direction: True
+    name: Minor mode. All tones.
+    desc: Minor I-IV-V7-I. Same as the previous exercises with the minor 7th added.
+    modes: [0,1]
+    tonic: C
+    degrees: [0,1,2,3,4,5,6,7,8,9,10,11]
+    range: ['C-2', 'C-6']
+    context: [0,1,2,3]
+    harmony: 3
+    length: 1
+    bpm: 80
+    duration: 2
+    sound: [1]

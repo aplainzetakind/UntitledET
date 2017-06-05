@@ -1,0 +1,42 @@
+<Manager>:
+    Welcome:
+        name: 'welcome'
+        FloatLayout:
+            orientation: 'vertical' 
+            padding: 10
+            spacing: 20
+            Label:
+                text: 'Welcome.\nPlease select a drill set.' 
+                halign: 'center'
+                size_hint_y: 0.5
+                pos_hint: {'top':1}
+            Button:
+                text: 'Built-in drills'
+                on_release: app.root.current = 'builtin'
+                size_hint: [0.9, 0.1]
+                pos_hint: {'center_x':0.5,'top':0.5}
+            Button:
+                text: 'Custom drills'
+                on_release: app.root.current = 'builtin'
+                size_hint: [0.9, 0.1]
+                pos_hint: {'center_x':0.5,'top':0.3}
+    Builtin:
+        name: 'builtin'
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Please select a drill.' 
+                halign: 'center'
+                size_hint_y: 0.3
+                pos_hint: {'top':1}
+            BuiltinView:
+                viewclass: 'Button'
+                RecycleBoxLayout:
+                    spacing: 10        
+                    default_pos_hint: {'center_x':0.5}
+                    default_size: None, dp(56)
+                    default_size_hint: 0.9, None
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: 'vertical'
+
