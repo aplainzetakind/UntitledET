@@ -1,4 +1,35 @@
-<Manager>:
+<Label>:
+    color: 0,0,0,1
+    font_name: 'font/LibreBaskerville-Regular.ttf'
+
+<Button>:
+    color: 1,1,1,1
+    font_name: 'font/LibreBaskerville-Regular.ttf'
+
+<DrillScreen>:
+    FloatLayout:
+        FloatLayout:
+            size_hint: 1.0, None
+            height: self.width
+            pos_hint: {'center_x':0.5,'center_y':0.5}
+            id: wheelbox
+            background_color: 1,1,1,1
+            pos: 0, 200
+            Label:
+                id: answerlabel
+                pos_hint: {'center_x':0.5, 'center_y':0.5}
+                text: root.answer
+        Button:
+            text: 'Start'
+            size_hint: 0.5, 0.1
+            on_release: root.startdrill()
+        Button:
+            text: 'Back'
+            size_hint: 0.5, 0.1
+            pos_hint: {'x':0.5}
+            #on_release: root.leave()
+
+ScreenManager:
     Welcome:
         name: 'welcome'
         FloatLayout:
@@ -39,4 +70,3 @@
                     size_hint_y: None
                     height: self.minimum_height
                     orientation: 'vertical'
-

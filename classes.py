@@ -2,6 +2,7 @@ from notefunctions import *
 from mingus.core import progressions, keys
 from mingus.containers import Track, Note
 from mingus.midi import fluidsynth
+from kivy.event import EventDispatcher
 from time import sleep
 
 SYLL = ['do', 'di', 're', 'me', 'mi', 'fa', 'fi', 'so', 'le', 'la', 'te', 'ti']
@@ -25,30 +26,36 @@ class drilloptions:
         self.dur = drills['duration']
         self.sou = drills['sound']
 
-class drill:
+class drill(EventDispatcher):
     '''The drill class. Takes a number of parameters and repeatedly
     instantiates Exercise() randomly within those parameters and plays it'''
     def __init__(self, opt):
         self.halt = False
+        self.register_event_type('on_answer')
         self.ex = None
         self.opt = opt
+        self.answer = ''
+
+    def on_answer(self,*args):
+        pass
+
+    def run(self):
+        '''Starts the drill loop to produce Exercise() instances.'''
+        self.halt = False
         try:
             #We should not just assume alsa.
             fluidsynth.init(SF2, 'alsa')
         except:
             print("Could not initiate Fluidsynth. Aborting.")
             sys.exit(1)
-
-    def run(self,*args):
-        '''Starts the drill loop to produce Exercise() instances.'''
-        self.halt = False
         #These instructions shouldn't be in every drill by default. Perhaps add
         #an instruction field to the yaml file.
-        print('''\n\tINSTRUCTIONS
-You will hear a sequence of chords, then a single tone. Respond with the
-movable do solfege syllable corresponding to the tone. After a brief response
-window, the correct syllable will be displayed.\n\nDo not attempt to refer to familiar melodies in your head, or intellectualize in any way. Blindly guess if you have no idea, and keep listening.  Gradually, you will "just know".\nHave fun.\n''')
-        raw_input('Press ENTER to continue...\n')
+        #print('''\n\tINSTRUCTIONS
+#You will hear a sequence of chords, then a single tone. Respond with the
+#movable do solfege syllable corresponding to the tone. After a brief response
+#window, the correct syllable will be displayed.\n\nDo not attempt to refer to familiar melodies in your head, or intellectualize in any way. Blindly guess if you have no idea, and keep listening.  Gradually, you will "just know".\nHave fun.\n''')
+        #raw_input('Press ENTER to continue...\n')
+
         while not self.halt:
             key = pickkey(self.opt.ton, self.opt.mod)
             cadence = pickcadence(self.opt.con)
@@ -57,10 +64,13 @@ window, the correct syllable will be displayed.\n\nDo not attempt to refer to fa
             
             self.ex = Exercise(self.opt.dir, cadence, key, prompt)
             self.ex.play(self.opt.bpm)
-            
+           
             sleep(90 / self.opt.bpm)
 
-            print(str(self.ex.answer()) + '\n\n' + '-' * 30 + '\n')
+            self.answer = '\n'.join(
+                    [ ','.join(a) for a in self.ex.answer() ] )
+            self.dispatch('on_answer', self.answer)
+            sleep(1)
 
             
 
