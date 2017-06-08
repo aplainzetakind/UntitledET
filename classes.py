@@ -30,7 +30,7 @@ class drill(EventDispatcher):
     '''The drill class. Takes a number of parameters and repeatedly
     instantiates Exercise() randomly within those parameters and plays it'''
     def __init__(self, opt):
-        self.halt = False
+        self.halted = False
         self.register_event_type('on_answer')
         self.ex = None
         self.opt = opt
@@ -41,7 +41,7 @@ class drill(EventDispatcher):
 
     def run(self):
         '''Starts the drill loop to produce Exercise() instances.'''
-        self.halt = False
+        self.halted = False
         try:
             #We should not just assume alsa.
             fluidsynth.init(SF2, 'alsa')
@@ -56,7 +56,7 @@ class drill(EventDispatcher):
 #window, the correct syllable will be displayed.\n\nDo not attempt to refer to familiar melodies in your head, or intellectualize in any way. Blindly guess if you have no idea, and keep listening.  Gradually, you will "just know".\nHave fun.\n''')
         #raw_input('Press ENTER to continue...\n')
 
-        while not self.halt:
+        while not self.halted:
             key = pickkey(self.opt.ton, self.opt.mod)
             cadence = pickcadence(self.opt.con)
             prompt = promptmaker(self.opt.har, self.opt.len, self.opt.deg,
@@ -70,7 +70,12 @@ class drill(EventDispatcher):
             self.answer = '\n'.join(
                     [ ','.join(a) for a in self.ex.answer() ] )
             self.dispatch('on_answer', self.answer)
+
             sleep(1)
+
+            self.answer = ''
+            self.dispatch('on_answer', self.answer)
+
 
             
 
@@ -80,7 +85,8 @@ class drill(EventDispatcher):
         #press shouldn't have to wait for the current audio to finish, so this
         #should also call something like self.ex.stop(), which doesn't exist
         #yet
-        self.halt = True
+        self.halted = True
+        self.ex.stop()
         
 class Exercise:
     '''a class describing musically the exercise'''
@@ -123,6 +129,8 @@ class Exercise:
         self.Track()
         fluidsynth.play_Track(self.track,1,bpm)
 
+    def stop(self):
+        fluidsynth.stop_everything()
 
     def answer(self):
         '''Returns the correct answer to the question as a list, empty if the

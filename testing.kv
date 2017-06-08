@@ -17,12 +17,15 @@
             pos: 0, 200
             Label:
                 id: answerlabel
+                font_name: 'font/LibreBaskerville-Bold.ttf'
+                font_size: self.height * 0.1
                 pos_hint: {'center_x':0.5, 'center_y':0.5}
                 text: root.answer
         Button:
             text: 'Start'
+            id: startstop
             size_hint: 0.5, 0.1
-            on_release: root.startdrill()
+            on_release: root.toggleplay()
         Button:
             text: 'Back'
             size_hint: 0.5, 0.1

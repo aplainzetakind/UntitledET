@@ -12,7 +12,7 @@ from kivy.config import Config
 from kivy.properties import ListProperty, StringProperty
 from kivy.graphics import Color, Rectangle, Ellipse
 from classes import *
-from multiprocessing import Process
+import threading
 from functools import partial
 from math import sin, cos, radians
 from colorsys import hls_to_rgb
@@ -66,7 +66,7 @@ class DrillScreen(Screen):
     def __init__(self, **kwargs):
         self.thedrill = drill(kwargs['options'])
         self.thedrill.bind(on_answer = self.printtest)
-        self.worker = Process(target=self.thedrill.run)
+        self.worker = threading.Thread(target=self.thedrill.run)
         super(DrillScreen, self).__init__(**kwargs)
         self.answer = self.thedrill.answer
         for i in self.thedrill.opt.deg:
@@ -88,15 +88,16 @@ class DrillScreen(Screen):
         self.answer = self.thedrill.answer
         print('This is printtest(): ', self.ids.answerlabel.text)
 
-    def startdrill(self):
+    def toggleplay(self):
         if not self.worker.is_alive():
             self.worker.start()
         else:
-            #self.worker.terminate() doesn't work here
+            self.stopdrill()
             pass
 
     def stopdrill(self):
-        self.worker.stop()
+        self.thedrill.halt()
+        self.worker.join()
 
     def leave(self):
         self.worker.join()
