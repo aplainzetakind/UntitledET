@@ -31,15 +31,15 @@ class drill(EventDispatcher):
     instantiates Exercise() randomly within those parameters and plays it'''
     def __init__(self, opt):
         self.halted = False
-        self.register_event_type('on_answer')
+        #self.register_event_type('on_answer')
         self.ex = None
         self.opt = opt
         self.answer = ''
 
-    def on_answer(self,*args):
-        pass
+    #def on_answer(self,*args):
+    #    pass
 
-    def run(self):
+    def run(self,a):
         '''Starts the drill loop to produce Exercise() instances.'''
         self.halted = False
         try:
@@ -68,13 +68,15 @@ class drill(EventDispatcher):
             sleep(90 / self.opt.bpm)
 
             self.answer = '\n'.join(
-                    [ ','.join(a) for a in self.ex.answer() ] )
-            self.dispatch('on_answer', self.answer)
+                    [ ','.join(i) for i in self.ex.answer() ] )
 
-            sleep(1)
+            a.value = self.answer
+            #self.dispatch('on_answer', self.answer)
 
-            self.answer = ''
-            self.dispatch('on_answer', self.answer)
+            sleep(2)
+
+            a.value, self.answer = '', ''
+            #self.dispatch('on_answer', self.answer)
 
 
             

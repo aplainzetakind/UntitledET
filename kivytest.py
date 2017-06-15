@@ -2,6 +2,7 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.widget import Widget
 from kivy.lang import Builder
+from kivy.clock import Clock
 from kivy.vector import Vector
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.recycleview import RecycleView
@@ -12,10 +13,13 @@ from kivy.config import Config
 from kivy.properties import ListProperty, StringProperty
 from kivy.graphics import Color, Rectangle, Ellipse
 from classes import *
-import threading
+from multiprocessing import Process
+from multiprocessing.sharedctypes import Array
 from functools import partial
 from math import sin, cos, radians
 from colorsys import hls_to_rgb
+import os
+import signal
 import yaml
 
 Config.set('graphics', 'width', '400')
@@ -55,6 +59,17 @@ class CButton(ButtonBehavior, Label):
     def collide_point(self, x, y):
         return Vector(x, y).distance(self.center) <= self.width / 2
 
+
+class drillplayer(Process):
+    def __init__(self, thedrill, answerarray):
+        self.thedrill = thedrill
+        self.a = answerarray
+        super(drillplayer,self).__init__()
+
+    def run(self):
+        self.thedrill.run(self.a)
+        
+
 class Welcome(Screen):
     pass
 
@@ -65,10 +80,10 @@ class DrillScreen(Screen):
     answer = StringProperty('')
     def __init__(self, **kwargs):
         self.thedrill = drill(kwargs['options'])
-        self.thedrill.bind(on_answer = self.printtest)
-        self.worker = threading.Thread(target=self.thedrill.run)
+        self.answerarray = Array('c', '  ')
+        self.worker = Process()#drillplayer(self.thedrill, self.answerarray)
         super(DrillScreen, self).__init__(**kwargs)
-        self.answer = self.thedrill.answer
+
         for i in self.thedrill.opt.deg:
             x = 0.5 + 0.37 * cos(radians(90 - 30*i))
             y = 0.5 + 0.37 * sin(radians(90 - 30*i))
@@ -81,29 +96,31 @@ class DrillScreen(Screen):
                     size_hint = [ 0.16, 0.16 ],
                     pos_hint = {'center_x':x,'center_y':y},
                     background_color = c)
-            b.bind(on_release = self.printtest)
+            #b.bind(on_release = self.printtest)
             self.ids.wheelbox.add_widget(b)
 
-    def printtest(self,*args):
-        self.answer = self.thedrill.answer
-        print('This is printtest(): ', self.ids.answerlabel.text)
+        Clock.schedule_interval(self.labelupdate, 0.05)
+
+    def labelupdate(self,*args):
+        self.answer = self.answerarray.value
+        #print('This is labelupdate(): ', self.answerarray.value)
 
     def toggleplay(self):
         if not self.worker.is_alive():
+            self.worker = drillplayer(self.thedrill, self.answerarray)
             self.worker.start()
+            self.ids.startstop.text = 'Stop'
         else:
-            self.stopdrill()
+            os.kill(self.worker.pid, signal.SIGKILL)
+            self.ids.startstop.text = 'Start'
             pass
 
-    def stopdrill(self):
-        self.thedrill.halt()
-        self.worker.join()
-
-    def leave(self):
-        self.worker.join()
+    def leavedrill(self):
+        if self.worker.is_alive():
+            os.kill(self.worker.pid, signal.SIGKILL)
         app = App.get_running_app()
-        app.root.add_widget(drillscreen)
         app.root.current = 'builtin'
+        app.root.remove_widget(self)
 
 
 
